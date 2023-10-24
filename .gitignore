@@ -1,0 +1,99 @@
+# Ignore operating system files and folders
+.DS_Store
+Thumbs.db
+
+# Ignore text editor and IDE files
+*.swp
+*.swo
+*.swn
+*.swo
+*.log
+*.sublime-*
+
+# Ignore system-specific files
+ehthumbs.db
+Desktop.ini
+Icon?
+ehthumbs.db
+ehthumbs.vista
+
+# Ignore backup and temporary files
+*~
+*.bak
+*.backup
+*.save
+*.swp
+
+# Ignore Node.js specific files
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Ignore Python specific files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+
+# Ignore Java-specific files
+*.class
+
+# Ignore compiled binaries
+*.dll
+*.exe
+
+# Ignore archives, compressed files, and logs
+*.zip
+*.rar
+*.gz
+*.7z
+*.log
+
+# Ignore database files
+*.sqlite
+*.sql
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore environment configuration files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.local
+
+# Ignore dependencies and build artifacts
+/dist/
+/build/
+/target/
+/out/
+
+# Ignore configuration files and secrets
+config.js
+config.json
+secrets.js
+secrets.json
+
+# Ignore user-specific files
+*.sublime-project
+*.sublime-workspace
+Thumbs.db
+desktop.ini
+
+# Ignore IDE-specific directories
+.idea/
+.vscode/
+
+.gradle/
+build.gradle
+config/
+gradle/
+gradlew
+gradlew.bat
+src/
