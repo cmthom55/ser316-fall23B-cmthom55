@@ -145,7 +145,7 @@ public class Game {
         Arrays.fill(this.progress, f);
     }
 
-    public void init_Game(String answer, String name){
+    public Game(String answer, String name) {
         this.name = name;
         this.answer = answer;
         this.guesses.clear();
