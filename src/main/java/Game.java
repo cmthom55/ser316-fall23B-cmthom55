@@ -11,15 +11,15 @@ import java.util.Arrays;
 public class Game {
 
     /** Holds the score for the game. */
-    public int score;
+    private int score;
 
-    String name;
+    private String name;
 
     /** Holds the answer for the game. */
-    String answer;
+    private String answer;
 
     /** Holds the current progress towards the answer*/
-    char[] progress;
+    private char[] progress;
 
     /** The encoded String for sending to the client*/
     private String encodedImage;
@@ -28,10 +28,10 @@ public class Game {
     private String leaderboardFName = "leaderboard.txt";
 
     /** The status of the game. {0 - In progress, 1 - Game won, 2 - game lost}*/
-    protected int gameStatus = 0;
+    private int gameStatus = 0;
 
     // all letter guesses, needs to be cleared for each game
-    ArrayList<String> guesses = new ArrayList<String>();
+    private ArrayList<String> guesses = new ArrayList<String>();
 
 
     /**
