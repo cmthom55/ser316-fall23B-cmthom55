@@ -69,6 +69,8 @@ public class Game {
      * @param score
      */
     public void setScore(int score) {this.score = score;}
+ 
+    public int getScore() {return this.score;}
 
     /**
      * Checks what positions a letter should be entered into and sets that value into the progress array.
@@ -145,7 +147,7 @@ public class Game {
         Arrays.fill(this.progress, f);
     }
 
-    public Game(String answer, String name) {
+    public Game(String answer, String name, boolean initGameReplacement) {
         this.name = name;
         this.answer = answer;
         this.guesses.clear();
