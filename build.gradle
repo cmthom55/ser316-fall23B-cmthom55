@@ -4,6 +4,8 @@ plugins {
 }
 
 apply plugin: 'application'
+apply plugin: 'jacoco'
+
 
 
 mainClassName = 'Main'
@@ -21,6 +23,21 @@ repositories {
 dependencies {
     implementation "junit:junit:4.12"
     implementation files('cls/')
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }
 
 //apply plugin: 'checkstyle'
