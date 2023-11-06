@@ -56,3 +56,7 @@ dependencies {
 //     showProgress = true
 //     effort = 'max'
 // }
+
+test {
+exclude '**/BlackBoxGiven.class'
+}
