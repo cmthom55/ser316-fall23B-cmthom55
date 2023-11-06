@@ -73,3 +73,7 @@ jacocoTestReport {
 //     showProgress = true
 //     effort = 'max'
 // }
+
+test {
+exclude '**/BlackBoxGiven.class'
+}
