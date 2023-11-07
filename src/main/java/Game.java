@@ -43,8 +43,13 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
-        return Arrays.copyOf(this.progress, this.progress.length);
+        char[] copy = new char[this.progress.length];
+        for (int i = 0; i < this.progress.length; i++) {
+            copy[i] = this.progress[i];
+        }
+        return copy;
     }
+
 
     /**
      * Gets the current status of the game.
