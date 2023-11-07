@@ -157,6 +157,16 @@ public class Game {
         Arrays.fill(this.progress, f);
     }
 
+    public void init_Game (String answer, String name) {
+        this.name = name;
+        this.answer = answer;
+        this.guesses.clear();
+        setScore(10);
+        this.progress = new char[answer.length()];
+        char f = '_';
+        Arrays.fill(this.progress, f);
+    }
+
     /**
      * Constructs a new hangmanGame with Anonymous as the name of the player.
      * @param imageType 0=city, 1=country
