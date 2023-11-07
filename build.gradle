@@ -69,7 +69,6 @@ apply plugin: 'com.github.spotbugs'
      ignoreFailures = true
      showProgress = true
      effort = 'max'
-     includeFilter = file('spotbugs.ignore.xml')
  }
 
  spotbugsMain {
