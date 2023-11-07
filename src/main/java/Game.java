@@ -197,111 +197,77 @@ public class Game {
      * @param guess
      * @return boolean. If the guess was correct.
      */
-public boolean makeGuess(String guess) {
-    // Convert the guess to lowercase to make it case-insensitive
-    guess = guess.toLowerCase();
+    public boolean makeGuess(String guess) {
+        // Convert the guess to lowercase to make it case-insensitive
+        guess = guess.toLowerCase();
 
-    // Check if the guess contains only alphabetic characters
-    if (!guess.matches("^[a-zA-Z]+$")) {
-        return false;
-    }
-
-    // Check if the guess has already been made
-    if (guesses.contains(guess)) {
-        // Guess was already made, deduct 2 points
-        setScore(getScore() - 2);
-
-        // Check if the game is lost
-        if (getScore() <= 0) {
-            setGameStatus(2); // Game lost
+        // Check if the guess contains only alphabetic characters
+        if (!guess.matches("^[a-zA-Z]+$")) {
+            return false;
         }
 
-        return false; // Incorrect guess
-    }
+        // Check if the guess has already been made
+        if (guesses.contains(guess)) {
+            // Guess was already made, deduct 2 points
+            setScore(getScore() - 2);
 
-    guesses.add(guess);
+            // Check if the game is lost
+            if (getScore() <= 0) {
+                setGameStatus(2); // Game lost
+            }
 
-    if (guess.length() == 1) {
-        char letter = guess.charAt(0);
+            return false; // Incorrect guess
+        }
 
-        // Initialize a variable to keep track of correct letter count
-        int correctCount = 0;
+        guesses.add(guess);
 
-        // Check if the letter is in the answer and update progress directly
-        for (int i = 0; i < getAnswer().length(); i++) {
-            char answerLetter = getAnswer().charAt(i);
-            if (Character.toLowerCase(answerLetter) == letter) {
-                if (getProgress()[i] == '_') {
-                    getProgress()[i] = Character.toLowerCase(answerLetter);
-                    correctCount++;
+        if (guess.length() == 1) {
+            char letter = guess.charAt(0);
+
+            // Initialize a variable to keep track of correct letter count
+            int correctCount = 0;
+
+            // Check if the letter is in the answer and update progress directly
+            for (int i = 0; i < getAnswer().length(); i++) {
+                char answerLetter = getAnswer().charAt(i);
+                if (Character.toLowerCase(answerLetter) == letter) {
+                    if (getProgress()[i] == '_') {
+                        getProgress()[i] = Character.toLowerCase(answerLetter);
+                        correctCount++;
+                    }
                 }
             }
-        }
 
-        if (correctCount > 0) {
-            setScore(getScore() + correctCount);
-        }
-
-        if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
-            // The word is complete after the guess
-            setGameStatus(1); // Game won
-        }
-
-        if (correctCount == 0) {
-            setScore(getScore() - 1);
-        }
-
-        // Check if the game is lost
-        if (getScore() <= 0) {
-            setGameStatus(2); // Game lost
-        }
-
-        return correctCount > 0; // Correct guess if at least one letter is in the correct position
-    } else if (guess.length() == getAnswer().length()) {
-        int unguessedLetters = 0;
-
-        // Initialize a variable to keep track of correct letter count
-        int correctCount = 0;
-
-        // Check if the word guess is correct and update progress directly
-        for (int i = 0; i < getAnswer().length(); i++) {
-            char answerLetter = getAnswer().charAt(i);
-            char guessedLetter = guess.charAt(i);
-
-            if (Character.toLowerCase(answerLetter) == guessedLetter) {
-                if (getProgress()[i] == '_') {
-                    // Turn the letter in the progress
-                    getProgress()[i] = Character.toLowerCase(answerLetter);
-                    correctCount++;
-                }
+            if (correctCount > 0) {
+                setScore(getScore() + correctCount);
             }
-        }
 
-        // Check if all letters are now in the correct position
-        if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
-            setScore(getScore() + correctCount*2);
-            setGameStatus(1); // Game won
-        } else {
-	   setScore(getScore() - 5);
-	}
+            if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
+                // The word is complete after the guess
+                setGameStatus(1); // Game won
+            }
 
-        // Check if the game is lost
-        if (getScore() <= 0) {
-            setGameStatus(2); // Game lost
-        }
+            if (correctCount == 0) {
+                setScore(getScore() - 1);
+            }
 
-        return correctCount > 0; // Correct guess if at least one letter is in the correct position
-    } else {
-        // Invalid guess (neither a letter nor a word of the correct length)
+            // Check if the game is lost
+            if (getScore() <= 0) {
+                setGameStatus(2); // Game lost
+            }
 
-        // Initialize a variable to keep track of correct letter count
-        int correctCount = 0;
+            return correctCount > 0; // Correct guess if at least one letter is in the correct position
+        } else if (guess.length() == getAnswer().length()) {
+            int unguessedLetters = 0;
 
-        // Check if there are correct letters in the incorrect-length guess and update progress directly
-        for (int i = 0; i < getAnswer().length(); i++) {
-            char answerLetter = getAnswer().charAt(i);
-            for (int j = 0; j < guess.length(); j++) {
-                char guessedLetter = guess.charAt(j);
+            // Initialize a variable to keep track of correct letter count
+            int correctCount = 0;
+
+            // Check if the word guess is correct and update progress directly
+            for (int i = 0; i < getAnswer().length(); i++) {
+                char answerLetter = getAnswer().charAt(i);
+                char guessedLetter = guess.charAt(i);
+
                 if (Character.toLowerCase(answerLetter) == guessedLetter) {
                     if (getProgress()[i] == '_') {
                         // Turn the letter in the progress
@@ -310,26 +276,60 @@ public boolean makeGuess(String guess) {
                     }
                 }
             }
+
+            // Check if all letters are now in the correct position
+            if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
+                setScore(getScore() + correctCount*2);
+                setGameStatus(1); // Game won
+            } else {
+                setScore(getScore() - 5);
+            }
+
+            // Check if the game is lost
+            if (getScore() <= 0) {
+                setGameStatus(2); // Game lost
+            }
+
+            return correctCount > 0; // Correct guess if at least one letter is in the correct position
+        } else {
+            // Invalid guess (neither a letter nor a word of the correct length)
+
+            // Initialize a variable to keep track of correct letter count
+            int correctCount = 0;
+
+            // Check if there are correct letters in the incorrect-length guess and update progress directly
+            for (int i = 0; i < getAnswer().length(); i++) {
+                char answerLetter = getAnswer().charAt(i);
+                for (int j = 0; j < guess.length(); j++) {
+                    char guessedLetter = guess.charAt(j);
+                    if (Character.toLowerCase(answerLetter) == guessedLetter) {
+                        if (getProgress()[i] == '_') {
+                            // Turn the letter in the progress
+                            getProgress()[i] = Character.toLowerCase(answerLetter);
+                            correctCount++;
+                        }
+                    }
+                }
+            }
+
+            // Award points for correct letters
+            setScore(getScore() + correctCount*2);
+
+            setScore(getScore() - 5);
+
+            if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
+                // The word is complete after the guess
+                setGameStatus(1); // Game won
+            }
+
+            // Check if the game is lost
+            if (getScore() <= 0) {
+                setGameStatus(2); // Game lost
+            }
+
+            return correctCount > 0; // Correct guess if at least one letter is in the correct position
         }
-
-        // Award points for correct letters
-        setScore(getScore() + correctCount*2);
-
-	setScore(getScore() - 5);
-
-        if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
-            // The word is complete after the guess
-            setGameStatus(1); // Game won
-        }
-
-        // Check if the game is lost
-        if (getScore() <= 0) {
-            setGameStatus(2); // Game lost
-        }
-
-        return correctCount > 0; // Correct guess if at least one letter is in the correct position
     }
-}
 
 
 
@@ -338,7 +338,6 @@ public boolean makeGuess(String guess) {
      * @param dir directory to the relevant image folder.
      */
     public void getRandomWord(String choice) {
-
         String[] cities = {"Aachen", "Berlin", "Phoenix", "Washington", "Munich", "Hamburg"};
         String[] countries = {"USA", "Germany", "Ireland", "Switzerland", "Austria"};
 
@@ -351,9 +350,5 @@ public boolean makeGuess(String guess) {
             randomNum = (int) (Math.floor(Math.random() * (100 - 2 + 1) + 2) % countries.length);
             this.answer = countries[randomNum];
         }
-
     }
-
-
-
 }
