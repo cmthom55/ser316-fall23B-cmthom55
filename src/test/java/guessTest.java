@@ -3,7 +3,7 @@ import org.junit.Before;
 
 import static org.junit.Assert.*;
 
-public class guessTest{
+public class guessTest {
 
     private Game game;
 
@@ -17,6 +17,7 @@ public class guessTest{
         game.init_Game("Aachen", "Dr. M");
         boolean guess = game.makeGuess("c");
         assertEquals(11, game.score);
+        assertEquals(0, game.getGameStatus());
     }
 
     @Test
