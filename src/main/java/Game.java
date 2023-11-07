@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class Game {
 
     /** Holds the score for the game. */
-    private int score;
+    int score;
 
     private String name;
 
