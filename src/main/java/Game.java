@@ -42,8 +42,8 @@ public class Game {
      * Gets the current progress towards the answer.
      * @return char[] Character Array of the progress.
      */
-    public String getProgress() {
-        String copy = copyValueOf(progress, 0, progress.length);
+    public char[] getProgress() {
+        char [] copy = (char[]) this.progress.clone();
         return copy;
     }
 
