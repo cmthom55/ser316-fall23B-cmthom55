@@ -1,5 +1,4 @@
 # Ignore operating system files and folders
 .DS_Store
-.gradle/
+.gradle
 build/
-
