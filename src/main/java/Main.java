@@ -5,13 +5,12 @@ import java.nio.charset.StandardCharsets;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        // Create an InputStreamReader with UTF-8 character encoding to read input from System.in
+        //SER316 TASK 2 SPOTBUGS FIX
         InputStreamReader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
 
-        // Wrap the InputStreamReader in a BufferedReader for efficient reading
+        //SER316 TASK 2 SPOTBUGS FIX
         BufferedReader bufferedReader = new BufferedReader(reader);
 
-        // Rest of your code remains the same
         System.out.println("Getting started");
         Game game = new Game(1);
         System.out.println("Current word: " + game.getAnswer());
@@ -27,14 +26,14 @@ public class Main {
         while (newgame.getGameStatus() == 0) {
             try {
                 String message = bufferedReader.readLine();
+                //SER316 TASK 2 SPOTBUGS FIX
                 if (message != null) {
                     System.out.println(newgame.makeGuess(message));
                     System.out.println("Score: " + newgame.getScore());
                     System.out.println(newgame.getProgress());
                 } else {
-                    // Handle end of input or an error here
-                    System.out.println("End of input or an error occurred.");
-                    break; // Exit the loop
+                    System.out.println("Message is null.");
+                    break;
                 }
             } catch (IOException e) {
                 e.printStackTrace();

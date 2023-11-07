@@ -43,6 +43,7 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
+        //SER316 TASK 2 SPOTBUGS FIX
         return Arrays.copyOf(this.progress, this.progress.length);
     }
 
@@ -192,6 +193,7 @@ public class Game {
                 char answerLetter = getAnswer().charAt(i);
                 if (Character.toLowerCase(answerLetter) == letter) {
                     if (getProgress()[i] == '_') {
+                        //SER316 TASK 2 SPOTBUGS FIX
                         this.progress[i] = Character.toLowerCase(answerLetter);
                         correctCount++;
                     }
@@ -230,7 +232,7 @@ public class Game {
 
                 if (Character.toLowerCase(answerLetter) == guessedLetter) {
                     if (getProgress()[i] == '_') {
-                        // Turn the letter in the progress
+                        //SER316 TASK 2 SPOTBUGS FIX
                         this.progress[i] = Character.toLowerCase(answerLetter);
                         correctCount++;
                     }
@@ -264,7 +266,7 @@ public class Game {
                     char guessedLetter = guess.charAt(j);
                     if (Character.toLowerCase(answerLetter) == guessedLetter) {
                         if (getProgress()[i] == '_') {
-                            // Turn the letter in the progress
+                            //SER316 TASK 2 SPOTBUGS FIX
                             this.progress[i] = Character.toLowerCase(answerLetter);
                             correctCount++;
                         }
