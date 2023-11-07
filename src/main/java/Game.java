@@ -42,7 +42,7 @@ public class Game {
      * Gets the current progress towards the answer.
      * @return char[] Character Array of the progress.
      */
-    public char[] getProgress() {
+    public String getProgress() {
         String copy = copyValueOf(progress, 0, progress.length);
         return copy;
     }
