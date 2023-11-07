@@ -12,7 +12,7 @@ public class Game {
     String answer;
 
     /** Holds the current progress towards the answer. */
-    char[] progress;
+    private char[] progress;
 
 
     /** The status of the game. {0 - In progress, 1 - Game won, 2 - game lost}*/
@@ -43,7 +43,12 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
-        return this.progress;
+        char[] copy = new char[progress.length];
+
+        for (int i = 0; i < progress.length; i++) {
+            copy[i] = progress[i];
+        }
+        return copy;
     }
 
     /**
