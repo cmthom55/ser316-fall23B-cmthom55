@@ -65,12 +65,7 @@ apply plugin: 'checkstyle'
 
 apply plugin: 'com.github.spotbugs'
 
-repositories {
-    mavenCentral()
-}
-
  spotbugs {
-     toolVersion = '5.0.12'
      ignoreFailures = true
      showProgress = true
      effort = 'max'
@@ -82,13 +77,6 @@ repositories {
          html.enabled = true
      }
  }
-
-spotbugsTest {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
-}
 
 
 test {
