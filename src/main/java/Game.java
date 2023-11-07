@@ -14,11 +14,6 @@ public class Game {
     /** Holds the current progress towards the answer. */
     char[] progress;
 
-    /** The encoded String for sending to the client. */
-    private String encodedImage;
-
-    /** The path to the file holding the leaderboard.*/
-    private String leaderboardFName = "leaderboard.txt";
 
     /** The status of the game. {0 - In progress, 1 - Game won, 2 - game lost}*/
     protected int gameStatus = 0;
