@@ -71,7 +71,6 @@ public class Game {
 
     /**
      * Sets the score for the game.
-     * @param score
      */
     public void setScore(int score) {
         this.score = score;
@@ -85,7 +84,7 @@ public class Game {
     protected int setProgress(char letter) {
         int count = 0;
         int i = 0;
-        while(this.getAnswer().indexOf(letter, i) >= 0){
+        while (this.getAnswer().indexOf(letter, i) >= 0) {
             i = this.getAnswer().indexOf(letter, i) + 1;
             this.progress[i - 1] = letter;
             count++;
@@ -122,7 +121,7 @@ public class Game {
     }
 
     /**
-     * Constructs a new hangmanGame with a fixed name
+     * Constructs a new hangmanGame with a fixed name.
      */
     public Game(String fixedWord, String name) {
         this.name = name;
@@ -134,7 +133,7 @@ public class Game {
     }
 
     /**
-     * Constructs a new hangmanGame with no arguments
+     * Constructs a new hangmanGame with no arguments.
      */
     public Game() {
         this.name = "";
