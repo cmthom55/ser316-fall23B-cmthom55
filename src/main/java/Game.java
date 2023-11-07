@@ -31,13 +31,17 @@ public class Game {
      * Gets the name for the game.
      * @return String The name.
      */
-    public String getName() {return this.name;}
+    public String getName() {
+        return this.name;
+    }
 
     /**
      * Gets the answer for the game.
      * @return String The Answer.
      */
-    public String getAnswer() {return this.answer.toLowerCase();}
+    public String getAnswer() {
+        return this.answer.toLowerCase();
+    }
 
     /**
      * Gets the current progress towards the answer.
@@ -78,9 +82,6 @@ public class Game {
         return this.score;
     }
 
-    /**
-     * Checks what positions a letter should be entered into and sets that value into the progress array.
-     */
     protected int setProgress(char letter) {
         int count = 0;
         int i = 0;
@@ -92,9 +93,6 @@ public class Game {
         return count;
     }
 
-    /**
-     * Completely fills the progress with the answer. Returns the number of letters that were still unturned
-     */
     public int fillProgress() {
         int hit = 0;
         for (int i = 0; i < this.getProgress().length; i++) {
@@ -112,9 +110,9 @@ public class Game {
      */
     public Game(String name, int imageType) {
         this.name = "Elsa";
-        if(imageType == 0){
+        if (imageType == 0) {
             getRandomWord("city");
-        }else if(imageType == 1) {
+        } else if(imageType == 1) {
             getRandomWord("country");
         }
         setScore(14);
@@ -126,7 +124,7 @@ public class Game {
     /**
      * Constructs a new hangmanGame with a fixed name
      */
-    public Game(String fixedWord, String name){
+    public Game(String fixedWord, String name) {
         this.name = name;
         this.answer = fixedWord;
         setScore(10);
@@ -147,7 +145,7 @@ public class Game {
         Arrays.fill(this.progress, f);
     }
 
-    public void init_Game(String answer, String name) {
+    public void init_Game (String answer, String name) {
         this.name = name;
         this.answer = answer;
         this.guesses.clear();
@@ -309,7 +307,7 @@ public class Game {
 
 
     /**
-     * Pulls out a random image and encodes it to be communicated to the client
+     * Pulls out a random image and encodes it to be communicated to the client.
      * @param dir directory to the relevant image folder.
      */
     public void getRandomWord(String choice) {
@@ -324,7 +322,7 @@ public class Game {
         int randomNum = 0;
 
         if (choice.equals("city")) {
-            randomNum = (int)(Math.floor(Math.random()*(100 - 2 + 1) + 2) % cities.length);
+            randomNum = (int)(Math.floor(Math.random() * (100 - 2 + 1) + 2) % cities.length);
             this.answer = cities[randomNum];
         } else {
             randomNum = (int) (Math.floor(Math.random() * (100 - 2 + 1) + 2) % countries.length);
