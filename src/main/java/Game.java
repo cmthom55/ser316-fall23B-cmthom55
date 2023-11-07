@@ -156,7 +156,7 @@ public class Game {
     /**
      * Constructs a new hangmanGame with no arguments.
      */
-    public Game(){
+    public Game() {
         this.name = "";
         this.answer = "";
         setScore(10);
@@ -165,7 +165,7 @@ public class Game {
         Arrays.fill(this.progress, f);
     }
 
-    public void init_Game(String answer, String name){
+    public void init_Game(String answer, String name) {
         this.name = name;
         this.answer = answer;
         this.guesses.clear();
@@ -179,7 +179,7 @@ public class Game {
      * Constructs a new hangmanGame with Anonymous as the name of the player.
      * @param imageType 0=city, 1=country
      */
-    public Game(int imageType){
+    public Game(int imageType) {
         this.name = "Anna";
         if(imageType == 1){
             getRandomWord("city");
@@ -274,7 +274,7 @@ public class Game {
 
             // Check if all letters are now in the correct position
             if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
-                setScore(getScore() + correctCount*2);
+                setScore(getScore() + correctCount * 2);
                 setGameStatus(1); // Game won
             } else {
                 setScore(getScore() - 5);
@@ -308,7 +308,7 @@ public class Game {
             }
 
             // Award points for correct letters
-            setScore(getScore() + correctCount*2);
+            setScore(getScore() + correctCount * 2);
 
             setScore(getScore() - 5);
 
@@ -321,7 +321,6 @@ public class Game {
             if (getScore() <= 0) {
                 setGameStatus(2); // Game lost
             }
-
             return correctCount > 0; // Correct guess if at least one letter is in the correct position
         }
     }
