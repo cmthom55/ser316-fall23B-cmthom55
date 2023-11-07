@@ -36,7 +36,6 @@ public class Game {
 
     /**
      * Gets the name for the game.
-     * @return String The name.
      */
     public String getName() {
         return this.name;
@@ -44,7 +43,6 @@ public class Game {
 
     /**
      * Gets the answer for the game.
-     * @return String The Answer.
      */
     public String getAnswer() {
         return this.answer.toLowerCase();
@@ -68,7 +66,6 @@ public class Game {
 
     /**
      * Gets the current status of the game.
-     * @return
      */
     public int getGameStatus() {
         return this.gameStatus;
@@ -80,7 +77,6 @@ public class Game {
 
     /**
      * Sets the score for the game.
-     * @param score
      */
     public void setScore(int score) {
         this.score = score;
@@ -93,12 +89,11 @@ public class Game {
 
     /**
      * Checks what positions a letter should be entered into and sets that value into progress.
-     * @param letter
      */
     protected int setProgress(char letter) {
         int count = 0;
         int i = 0;
-        while(this.getAnswer().indexOf(letter, i) >= 0){
+        while(this.getAnswer().indexOf(letter, i) >= 0) {
             i = this.getAnswer().indexOf(letter, i) + 1;
             this.progress[i - 1] = letter;
             count++;
@@ -123,12 +118,10 @@ public class Game {
 
     /**
      * Constructs a new hangmanGame.
-     * @param name
-     * @param imageType 0=city, 1=country
      */
     public Game(String name, int imageType){
         this.name = "Elsa";
-        if(imageType == 0){
+        if (imageType == 0) {
             getRandomWord("city");
         }else if(imageType == 1){
             getRandomWord("country");
@@ -141,8 +134,6 @@ public class Game {
 
     /**
      * Constructs a new hangmanGame with a fixed name.
-     * @param name
-     * @param imageType 0=city, 1=country
      */
     public Game(String fixedWord, String name){
         this.name = name;
@@ -177,22 +168,18 @@ public class Game {
 
     /**
      * Constructs a new hangmanGame with Anonymous as the name of the player.
-     * @param imageType 0=city, 1=country
      */
     public Game(int imageType) {
         this.name = "Anna";
-        if(imageType == 1){
+        if (imageType == 1) {
             getRandomWord("city");
-        }else if(imageType == 2)
+        } else if (imageType == 2) {
             getRandomWord("city");
-        setScore(12);
-        this.progress = new char[answer.length()];
+            setScore(12);
+            this.progress = new char[answer.length()];
+        }
     }
 
-    /**
-     * @param guess
-     * @return boolean. If the guess was correct.
-     */
     public boolean makeGuess(String guess) {
         // Convert the guess to lowercase to make it case-insensitive
         guess = guess.toLowerCase();
