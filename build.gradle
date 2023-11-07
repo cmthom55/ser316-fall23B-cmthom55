@@ -62,17 +62,17 @@ apply plugin: 'checkstyle'
 // Configure SpotBugs
 ///////////////////////////////////////////////////////////////////////
 // To generate an HTML report instead of XML
-// spotbugsMain {
-//     reports {
-//         xml.enabled = false
-//         html.enabled = true
-//     }
-// }
-// spotbugs {
-//     ignoreFailures = true
-//     showProgress = true
-//     effort = 'max'
-// }
+ spotbugsMain {
+     reports {
+         xml.enabled = false
+         html.enabled = true
+     }
+ }
+ spotbugs {
+     ignoreFailures = true
+     showProgress = true
+     effort = 'max'
+ }
 
 test {
 exclude '**/BlackBoxGiven.class'
