@@ -318,12 +318,8 @@ public class Game {
      * @param dir directory to the relevant image folder.
      */
     public void getRandomWord(String choice) {
-        String[] cities = {
-                "Aachen", "Berlin", "Phoenix", "Washington", "Munich", "Hamburg"
-        };
-        String[] countries = {
-                "USA", "Germany", "Ireland", "Switzerland", "Austria"
-        };
+        String[] cities = {"Aachen", "Berlin", "Phoenix", "Washington", "Munich", "Hamburg"};
+        String[] countries = {"USA", "Germany", "Ireland", "Switzerland", "Austria"};
 
         int randomNum = 0;
 
