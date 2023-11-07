@@ -58,25 +58,24 @@ apply plugin: 'checkstyle'
  }
 
 
-apply plugin: 'com.github.spotbugs'
+///////////////////////////////////////////////////////////////////////
+// Configure SpotBugs
+///////////////////////////////////////////////////////////////////////
+// To generate an HTML report instead of XML
+ spotbugsMain {
+     reports {
+         xml.enabled = false
+         html.enabled = true
+     }
+ }
+ spotbugs {
+     toolVersion = '7.4.2'
+     ignoreFailures = true
+     showProgress = true
+     effort = 'max'
+ }
 
-spotbugs {
-    toolVersion = '5.0.12'
-    ignoreFailures = false
-    showProgress = true
-    effort = 'max'
-}
 
-spotbugsMain {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
-}
-
-spotbugsTest {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
+test {
+exclude '**/BlackBoxGiven.class'
 }
