@@ -48,7 +48,7 @@ public class Game {
      */
     public String getAnswer() {
         return this.answer.toLowerCase();
-        }
+    }
 
     /**
      * Gets the current progress towards the answer.
@@ -56,7 +56,7 @@ public class Game {
      */
     public char[] getProgress() {
         return this.progress;
-        }
+    }
 
     /**
      * Gets the encoded image for for the answer.
@@ -64,7 +64,7 @@ public class Game {
      */
     public String getEncodedImage() {
         return this.encodedImage;
-        }
+    }
 
     /**
      * Gets the current status of the game.
@@ -76,7 +76,7 @@ public class Game {
 
     public void setGameStatus(int statusSet) {
         this.gameStatus = statusSet;
-        }
+    }
 
     /**
      * Sets the score for the game.
@@ -84,15 +84,15 @@ public class Game {
      */
     public void setScore(int score) {
         this.score = score;
-        }
+    }
 
 
     public int getScore() {
         return this.score;
-        }
+    }
 
     /**
-     * Checks what positions a letter should be entered into and sets that value into the progress array.
+     * Checks what positions a letter should be entered into and sets that value into progress.
      * @param letter
      */
     protected int setProgress(char letter) {
@@ -107,7 +107,7 @@ public class Game {
     }
 
     /**
-     * Completely fills the progress with the answer. Returns the number of letters that were still unturned
+     * Completely fills the progress with the answer. Returns the number unturned letters. 
      */
     public int fillProgress() {
         int hit = 0;
@@ -190,25 +190,6 @@ public class Game {
     }
 
     /**
-     * The method accepts a single parameter, "guess," which can be a letter or a word.
-     * It should be case-insensitive, treating uppercase and lowercase letters as equivalent.
-     * Method checks if the guess is correct (letter in "answer" or complete word correct), should ignore upper/lowe case.
-     * Should set score based on if it was a letter or word guess and based on if it was correct or not.
-     *
-     * If letter:
-     *  Check that the letter is in the answer, if so turn that letter in the process variable
-     *  If the letter is in the word more than once then turn all of them. For each correct letter give +1 point, for an incorrect letter -1
-     *  If that guess was already made (either correct or incorrect) take -2 points
-     * If word:
-     *  Check that word is correct
-     *  If correct give +2 points for each letter that was still not turned in progress variable
-     *  If incorrect guess -5 points overall
-     *  If that guess was already made then take 6 points from the score
-     *
-     *
-     * If the word is complete after the guess then set status of game to 1;
-     * If the score is 0 or less the player lost and the status should be set to 2.
-     *
      * @param guess
      * @return boolean. If the guess was correct.
      */
@@ -351,13 +332,17 @@ public class Game {
      * @param dir directory to the relevant image folder.
      */
     public void getRandomWord(String choice) {
-        String[] cities = {"Aachen", "Berlin", "Phoenix", "Washington", "Munich", "Hamburg"};
-        String[] countries = {"USA", "Germany", "Ireland", "Switzerland", "Austria"};
+        String[] cities = {
+                "Aachen", "Berlin", "Phoenix", "Washington", "Munich", "Hamburg"
+        };
+        String[] countries = {
+                "USA", "Germany", "Ireland", "Switzerland", "Austria"
+        };
 
         int randomNum = 0;
 
         if (choice.equals("city")) {
-            randomNum = (int)(Math.floor(Math.random()*(100-2+1)+2) % cities.length);
+            randomNum = (int)(Math.floor(Math.random() * (100 - 2 + 1) + 2) % cities.length);
             this.answer = cities[randomNum];
         } else {
             randomNum = (int) (Math.floor(Math.random() * (100 - 2 + 1) + 2) % countries.length);
