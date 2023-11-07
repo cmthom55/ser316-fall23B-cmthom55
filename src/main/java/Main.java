@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         // just some calls
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Getting started");
         Game game = new Game(1);
         System.out.println("Current word: " + game.answer);
