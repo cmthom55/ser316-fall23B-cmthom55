@@ -43,7 +43,7 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
-        char [] copy = copyValueOf(progress, 0, progress.length);
+        String copy = copyValueOf(progress, 0, progress.length);
         return copy;
     }
 
