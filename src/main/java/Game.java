@@ -43,8 +43,7 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
-        char [] copy = (char[]) this.progress.clone();
-        return copy;
+        return this.progress;
     }
 
     /**
