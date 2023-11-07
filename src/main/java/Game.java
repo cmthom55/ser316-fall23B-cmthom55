@@ -47,13 +47,6 @@ public class Game {
     }
 
     /**
-     * Gets the encoded image for for the answer.
-     */
-    public String getEncodedImage() {
-        return this.encodedImage;
-    }
-
-    /**
      * Gets the current status of the game.
      */
     public int getGameStatus() {
