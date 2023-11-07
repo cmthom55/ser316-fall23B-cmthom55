@@ -14,13 +14,13 @@ public class Game {
     /** Holds the current progress towards the answer. */
     char[] progress;
 
+    //SER316 TASK 2 SPOTBUGS FIX: Got rid of leaderboardFn and encodedImage
 
     /** The status of the game. {0 - In progress, 1 - Game won, 2 - game lost}*/
     protected int gameStatus = 0;
 
     // all letter guesses, needs to be cleared for each game
     ArrayList<String> guesses = new ArrayList<String>();
-
 
     /**
      * Gets the name for the game.
@@ -43,7 +43,7 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
-        return this.progress;
+        return Arrays.copyOf(this.progress, this.progress.length);
     }
 
     /**
