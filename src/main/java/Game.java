@@ -43,7 +43,9 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
-	return this.progress;
+        char[] newArray = new char[progress.length];
+        System.arraycopy(progress, 0, newArray, 0, progress.length);
+        return newArray;
     }
 
     /**
