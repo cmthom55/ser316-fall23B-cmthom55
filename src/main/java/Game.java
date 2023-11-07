@@ -12,7 +12,7 @@ public class Game {
     String answer;
 
     /** Holds the current progress towards the answer. */
-    private char[] progress;
+    char[] progress;
 
 
     /** The status of the game. {0 - In progress, 1 - Game won, 2 - game lost}*/
