@@ -1,32 +1,36 @@
-import java.nio.charset.Charset;
-import java.io.UnsupportedEncodingException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
-    public static void main(String[] args) {
-        // Specify the character encoding explicitly (e.g., UTF-8)
-        Charset charset = Charset.forName("UTF-8");
-        
-        Scanner scanner = new Scanner(System.in);
-        
-        // just some calls
+    public static void main(String[] args) throws IOException {
+        InputStreamReader reader = new InputStreamReader(System.in, StandardCharsets.UTF_8);
+
+        BufferedReader bufferedReader = new BufferedReader(reader);
+
+        // Rest of your code remains the same
         System.out.println("Getting started");
         Game game = new Game(1);
         System.out.println("Current word: " + game.getAnswer());
-        System.out.println(new String(game.getProgress(), charset));
+        System.out.println(game.getProgress());
         game.makeGuess("a");
         System.out.println("Automatic guess a");
-        System.out.println(new String(game.getProgress(), charset));
+        System.out.println(game.getProgress());
 
-        // Rough game play
         Game newgame = new Game("Dr. M.", 0);
         System.out.println("Make a guess: ");
-        System.out.println(new String(newgame.getProgress(), charset));
+        System.out.println(newgame.getProgress());
+
         while (newgame.getGameStatus() == 0) {
-            String message = scanner.nextLine();
-            System.out.println(newgame.makeGuess(message));
-            System.out.println("Score: " + newgame.getScore());
-            System.out.println(new String(newgame.getProgress(), charset));
+            try {
+                String message = bufferedReader.readLine();
+                System.out.println(newgame.makeGuess(message));
+                System.out.println("Score: " + newgame.getScore());
+                System.out.println(newgame.getProgress());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
