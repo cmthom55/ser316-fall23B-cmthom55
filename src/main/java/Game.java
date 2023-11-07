@@ -43,7 +43,7 @@ public class Game {
      * @return char[] Character Array of the progress.
      */
     public char[] getProgress() {
-        return new this.progress;
+        return this.progress.clone();
     }
 
     /**
