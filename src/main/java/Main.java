@@ -11,14 +11,6 @@ public class Main {
         //SER316 TASK 2 SPOTBUGS FIX
         BufferedReader bufferedReader = new BufferedReader(reader);
 
-        System.out.println("Getting started");
-        Game game = new Game(1);
-        System.out.println("Current word: " + game.getAnswer());
-        System.out.println(game.getProgress());
-        game.makeGuess("a");
-        System.out.println("Automatic guess a");
-        System.out.println(game.getProgress());
-
         Game newgame = new Game("Dr. M.", 0);
         System.out.println("Make a guess: ");
         System.out.println(newgame.getProgress());
