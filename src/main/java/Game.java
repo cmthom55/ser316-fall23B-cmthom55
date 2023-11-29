@@ -81,18 +81,6 @@ public class Game {
         return count;
     }
 
-    public int fillProgress() {
-        int hit = 0;
-        for (int i = 0; i < this.getProgress().length; i++) {
-            char f = '_';
-            if (this.progress[i] == (f)) {
-                this.progress[i] = this.getAnswer().charAt(i);
-                hit++;
-            }
-        }
-        return hit;
-    }
-
     /**
      * Constructs a new hangmanGame.
      */

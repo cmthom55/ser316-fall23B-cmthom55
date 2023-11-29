@@ -18,51 +18,6 @@ public class GivenWhiteBox {
         assertEquals(10, game.getScore());
     }
 
-    /* Addresses Node Coverage Sequence for fillProgress */
-    @Test
-    public void testFillProgressSequence() {
-        char[] progress = new char[game.getAnswer().length()];
-        char f = '_';
-        for (int i = 0; i < progress.length; i++) {
-            progress[i] = f;
-        }
-        game.progress = progress;
-
-        int hit = game.fillProgress();
-
-        int expectedHit = 6;
-        assertEquals(expectedHit, hit);
-    }
-
-    /* Addresses Fill Progress Edge Coverage Sequence 1 */
-    @Test
-    public void testFillProgressProgressContainsUnderscores() {
-        char[] progress = game.getAnswer().toCharArray();
-        progress[0] = '_';
-        progress[2] = '_';
-        game.progress = progress;
-
-        int hit = game.fillProgress();
-
-        assertFalse(String.valueOf(game.getProgress()).contains("_"));
-
-        int expectedHit = 2;
-        assertEquals(expectedHit, hit);
-    }
-
-    /* Addresses Fill Progress Edge Coverage Sequence 2 */
-    @Test
-    public void testFillProgressProgressContainsNoUnderscores() {
-        char[] progress = game.getAnswer().toCharArray();
-        game.progress = progress;
-
-        int hit = game.fillProgress();
-
-        assertArrayEquals(game.getAnswer().toCharArray(), game.getProgress());
-
-        assertEquals(0, hit);
-    }
-
     /* Addresses Set Progress Node Sequence */
     @Test
     public void testSetProgressSequence() {
