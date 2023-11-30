@@ -13,6 +13,7 @@ public class Main {
 
         Game newgame = new Game("Dr. M.", 0);
         System.out.println("Make a guess: ");
+        System.out.println("Score: " + newgame.getScore());
         System.out.println(newgame.getProgress());
 
         while (newgame.getGameStatus() == 0) {
@@ -20,7 +21,7 @@ public class Main {
                 String message = bufferedReader.readLine();
                 //SER316 TASK 2 SPOTBUGS FIX
                 if (message != null) {
-                    System.out.println(newgame.makeGuess(message));
+                    newgame.makeGuess(message);
                     System.out.println("Score: " + newgame.getScore());
                     System.out.println(newgame.getProgress());
                 } else {

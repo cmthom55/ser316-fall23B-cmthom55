@@ -81,54 +81,45 @@ public class Game {
         return count;
     }
 
-    /**
-     * Constructs a new hangmanGame.
-     */
-    public Game(String name, int imageType) {
-        this.name = "Elsa";
+    private void initializeGame(String name, int score, int imageType, String answer) {
+        this.name = name.isEmpty() ? "Elsa" : name;
         if (imageType == 0) {
             getRandomWord("city");
         } else if(imageType == 1) {
             getRandomWord("country");
+        } else {
+            this.answer = answer;
         }
-        setScore(14);
-        this.progress = new char[answer.length()];
+        this.guesses.clear();
+        setScore(score);
+        this.progress = new char[this.answer.length()];
         char f = '_';
         Arrays.fill(this.progress, f);
+    }
+
+    /**
+     * Constructs a new hangmanGame.
+     */
+    public Game(String name, int imageType) {
+        initializeGame(name, 14, imageType, "");
     }
 
     /**
      * Constructs a new hangmanGame with a fixed name.
      */
     public Game(String fixedWord, String name) {
-        this.name = name;
-        this.answer = fixedWord;
-        setScore(10);
-        this.progress = new char[answer.length()];
-        char f = '_';
-        Arrays.fill(this.progress, f);
+        initializeGame(name, 10, -1, fixedWord);
     }
 
     /**
      * Constructs a new hangmanGame with no arguments.
      */
     public Game() {
-        this.name = "";
-        this.answer = "";
-        setScore(10);
-        this.progress = new char[answer.length()];
-        char f = '_';
-        Arrays.fill(this.progress, f);
+        initializeGame("", 10, -1, "");
     }
 
     public void init_Game (String answer, String name) {
-        this.name = name;
-        this.answer = answer;
-        this.guesses.clear();
-        setScore(10);
-        this.progress = new char[answer.length()];
-        char f = '_';
-        Arrays.fill(this.progress, f);
+        initializeGame(name, 10, -1, answer);
     }
 
     /**
@@ -136,152 +127,82 @@ public class Game {
      * @param imageType 0=city, 1=country
      */
     public Game(int imageType) {
-        this.name = "Anna";
-        if(imageType == 1){
-            getRandomWord("city");
-        }else if(imageType == 2) {
-            getRandomWord("city");
-        }
-        setScore(12);
-        this.progress = new char[answer.length()];
+        initializeGame("Anna", 12, 0, "");
     }
 
     public boolean makeGuess(String guess) {
-        // Convert the guess to lowercase to make it case-insensitive
+        int correctCount = 0;
+
         guess = guess.toLowerCase();
 
-        // Check if the guess contains only alphabetic characters
         if (!guess.matches("^[a-zA-Z]+$")) {
             return false;
         }
 
-        // Check if the guess has already been made
         if (guesses.contains(guess)) {
-            // Guess was already made, deduct 2 points
-            setScore(getScore() - 2);
-
-            // Check if the game is lost
-            if (getScore() <= 0) {
-                setGameStatus(2); // Game lost
-            }
-
-            return false; // Incorrect guess
+            updateScoreAndGameStatus(-2);
+            return false;
         }
 
         guesses.add(guess);
 
         if (guess.length() == 1) {
-            char letter = guess.charAt(0);
-
-            // Initialize a variable to keep track of correct letter count
-            int correctCount = 0;
-
-            // Check if the letter is in the answer and update progress directly
-            for (int i = 0; i < getAnswer().length(); i++) {
-                char answerLetter = getAnswer().charAt(i);
-                if (Character.toLowerCase(answerLetter) == letter) {
-                    if (getProgress()[i] == '_') {
-                        //SER316 TASK 2 SPOTBUGS FIX
-                        this.progress[i] = Character.toLowerCase(answerLetter);
-                        correctCount++;
-                    }
-                }
-            }
+            correctCount = updateProgress(guess);
 
             if (correctCount > 0) {
-                setScore(getScore() + correctCount);
+                updateScoreAndGameStatus(correctCount);
+            } else {
+                updateScoreAndGameStatus(-1);
             }
+        } else if (guess.length() == getAnswer().length()) {
+            correctCount = updateProgress(guess);
 
             if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
-                // The word is complete after the guess
-                setGameStatus(1); // Game won
+                updateScoreAndGameStatus(correctCount*2);
+            } else {
+                updateScoreAndGameStatus(-5);
             }
 
-            if (correctCount == 0) {
-                setScore(getScore() - 1);
-            }
+        } else {
+            correctCount = updateProgress(guess);
 
-            // Check if the game is lost
-            if (getScore() <= 0) {
-                setGameStatus(2); // Game lost
-            }
+            updateScoreAndGameStatus(correctCount * 2 - 5);
+        }
+        return correctCount > 0;
+    }
 
-            return correctCount > 0; // Correct guess if at least one letter is in the correct position
-        } else if (guess.length() == getAnswer().length()) {
-            int unguessedLetters = 0;
+    public void updateScoreAndGameStatus(int scoreAdjustment) {
+        setScore(getScore() + scoreAdjustment);
 
-            // Initialize a variable to keep track of correct letter count
-            int correctCount = 0;
+        if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
+            System.out.println("You win! :)");
+            setGameStatus(1);
+        } 
 
-            // Check if the word guess is correct and update progress directly
-            for (int i = 0; i < getAnswer().length(); i++) {
-                char answerLetter = getAnswer().charAt(i);
-                char guessedLetter = guess.charAt(i);
+        if (getScore() <= 0) {
+            System.out.println("You lose! :(");
+            setGameStatus(2);
+        }      
+    }
 
+    public int updateProgress(String guess) {
+        int amountCorrect = 0;
+        for (int i = 0; i < getAnswer().length(); i++) {
+            char answerLetter = getAnswer().charAt(i);
+
+            for (int j = 0; j < guess.length(); j++) {
+                char guessedLetter = guess.charAt(j);
                 if (Character.toLowerCase(answerLetter) == guessedLetter) {
                     if (getProgress()[i] == '_') {
                         //SER316 TASK 2 SPOTBUGS FIX
                         this.progress[i] = Character.toLowerCase(answerLetter);
-                        correctCount++;
+                        amountCorrect++;
                     }
                 }
             }
-
-            // Check if all letters are now in the correct position
-            if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
-                setScore(getScore() + correctCount*2);
-                setGameStatus(1); // Game won
-            } else {
-                setScore(getScore() - 5);
-            }
-
-            // Check if the game is lost
-            if (getScore() <= 0) {
-                setGameStatus(2); // Game lost
-            }
-
-            return correctCount > 0; // Correct guess if at least one letter is in the correct position
-        } else {
-            // Invalid guess (neither a letter nor a word of the correct length)
-
-            // Initialize a variable to keep track of correct letter count
-            int correctCount = 0;
-
-            // Check if there are correct letters in the incorrect-length guess and update progress directly
-            for (int i = 0; i < getAnswer().length(); i++) {
-                char answerLetter = getAnswer().charAt(i);
-                for (int j = 0; j < guess.length(); j++) {
-                    char guessedLetter = guess.charAt(j);
-                    if (Character.toLowerCase(answerLetter) == guessedLetter) {
-                        if (getProgress()[i] == '_') {
-                            //SER316 TASK 2 SPOTBUGS FIX
-                            this.progress[i] = Character.toLowerCase(answerLetter);
-                            correctCount++;
-                        }
-                    }
-                }
-            }
-
-            // Award points for correct letters
-            setScore(getScore() + correctCount * 2);
-
-            setScore(getScore() - 5);
-
-            if (Arrays.equals(getAnswer().toCharArray(), getProgress())) {
-                // The word is complete after the guess
-                setGameStatus(1); // Game won
-            }
-
-            // Check if the game is lost
-            if (getScore() <= 0) {
-                setGameStatus(2); // Game lost
-            }
-
-            return correctCount > 0; // Correct guess if at least one letter is in the correct position
-        }
+        }  
+        return amountCorrect;
     }
-
-
 
 
     /**
