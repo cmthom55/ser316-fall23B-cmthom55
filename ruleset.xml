@@ -34,5 +34,13 @@
 </rule>
 <rule ref="category/java/bestpractices.xml/LooseCoupling" />
 
+<!-- Additional Rules -->
+<rule ref="category/java/codestyle.xml/UnusedImports"/>
+<rule ref="category/java/errorprone.xml/EmptyCatchBlock"/>
+<rule ref="category/java/bestpractices.xml/MagicNumber"/>
+<rule ref="category/java/codestyle.xml/DuplicateCode"/>
+<rule ref="category/java/design.xml/LawOfDemeter"/>
+<rule ref="category/java/codestyle.xml/UnnecessaryFinalModifier"/>
+<rule ref="category/java/design.xml/DataClass"/>
 
 </ruleset>
